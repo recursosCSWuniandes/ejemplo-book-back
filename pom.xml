@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>co.edu.uniandes.csw.bookbasico</groupId>
+    <artifactId>BookBasico</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>BookBasico</name>
+    <modules>
+        <module>BookBasico.logic</module>
+        <module>BookBasico.api</module>
+    </modules>
+    <repositories>
+        <repository>            
+            <snapshots>
+               <updatePolicy>always</updatePolicy>
+           </snapshots>
+            <id>csw-releases</id>
+            <name>csw releases</name>
+            <url>http://157.253.238.75:8081/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.main.extras</groupId>
+                <artifactId>glassfish-embedded-all</artifactId>
+                <version>4.1.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>org.eclipse.persistence.moxy</artifactId>
+                <version>2.6.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
