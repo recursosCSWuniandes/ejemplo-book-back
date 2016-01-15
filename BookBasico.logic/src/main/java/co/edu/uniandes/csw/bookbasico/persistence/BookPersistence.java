@@ -12,26 +12,31 @@ import javax.persistence.Query;
  * @generated
  */
 @Stateless
-public class BookPersistence extends CrudPersistence<BookEntity> {
+public class BookPersistence {
 
-    @PersistenceContext
-    private EntityManager em;
+    @PersistenceContext(unitName = "BookBasicoPU")
+    protected EntityManager em;
 
-   
-
-    /**
-     * @generated
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+    public BookEntity create(BookEntity entity) {
+        em.persist(entity);
+        return entity;
     }
 
-    /**
-     * @generated
-     */
-    @Override
-    protected Class<BookEntity> getEntityClass() {
-        return BookEntity.class;
+    public BookEntity update(BookEntity entity) {
+        return em.merge(entity);
+    }
+
+    public void delete(Long id) {
+        BookEntity entity = em.find(BookEntity.class, id);
+        em.remove(entity);
+    }
+
+    public BookEntity find(Long id) {
+        return em.find(BookEntity.class, id);
+    }
+
+    public List<BookEntity> findAll() {
+        Query q = em.createQuery("select u from BookEntity u");
+        return q.getResultList();
     }
 }
