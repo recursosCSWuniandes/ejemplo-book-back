@@ -2,6 +2,7 @@ package co.edu.uniandes.csw.bookbasico.dtos;
 
 import co.edu.uniandes.csw.auth.model.DateAdapter;
 import java.util.Date;
+import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -18,6 +19,8 @@ public class BookDTO {
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date publishDate;
     private String description;
+    private List<ReviewDTO> reviews;
+    private EditorialDTO editorial;
 
     
     public Long getId() {
@@ -75,5 +78,20 @@ public class BookDTO {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+    
+     public List<ReviewDTO> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewDTO> reviews) {
+        this.reviews = reviews;
+    }
+    public EditorialDTO getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(EditorialDTO editorial) {
+        this.editorial = editorial;
     }
 }

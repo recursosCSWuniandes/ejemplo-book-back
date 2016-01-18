@@ -27,6 +27,7 @@ public abstract class BookConverter {
             dto.setIsbn(entity.getIsbn());
             dto.setImage(entity.getImage());
             dto.setDescription(entity.getDescription());
+            dto.setEditorial(EditorialConverter.basicEntity2DTO(entity.getEditorial()));
 
             return dto;
         } else {
@@ -63,6 +64,7 @@ public abstract class BookConverter {
     public static BookDTO basicEntity2DTO(BookEntity entity) {
         if (entity != null) {
             BookDTO dto = refEntity2DTO(entity);
+            dto.setEditorial(EditorialConverter.basicEntity2DTO(entity.getEditorial()));
 
             return dto;
         } else {
@@ -87,6 +89,7 @@ public abstract class BookConverter {
             entity.setImage(dto.getImage());
             entity.setPublishDate(dto.getPublishDate());
             entity.setDescription(dto.getDescription());
+            entity.setEditorial(EditorialConverter.basicDTO2Entity(dto.getEditorial()));
 
             return entity;
         } else {
@@ -103,6 +106,7 @@ public abstract class BookConverter {
      */
     public static BookDTO fullEntity2DTO(BookEntity entity) {
         BookDTO dto = basicEntity2DTO(entity);
+        dto.setReviews(ReviewConverter.listEntity2DTO(entity.getReviews()));
         return dto;
     }
 
@@ -115,6 +119,7 @@ public abstract class BookConverter {
      */
     public static BookEntity fullDTO2Entity(BookDTO dto) {
         BookEntity entity = basicDTO2Entity(dto);
+        entity.setReviews(ReviewConverter.childListDTO2Entity(dto.getReviews(), entity));
         return entity;
     }
 
