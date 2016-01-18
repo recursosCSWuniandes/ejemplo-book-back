@@ -2,7 +2,6 @@ package co.edu.uniandes.csw.bookbasico.ejbs;
 
 import co.edu.uniandes.csw.bookbasico.api.IBookLogic;
 import co.edu.uniandes.csw.bookbasico.entities.BookEntity;
-import co.edu.uniandes.csw.bookbasico.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.bookbasico.persistence.BookPersistence;
 import java.util.List;
 import javax.ejb.Stateless;

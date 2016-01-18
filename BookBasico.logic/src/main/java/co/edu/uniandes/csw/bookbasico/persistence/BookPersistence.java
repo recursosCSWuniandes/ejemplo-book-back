@@ -1,7 +1,6 @@
 package co.edu.uniandes.csw.bookbasico.persistence;
 
 import co.edu.uniandes.csw.bookbasico.entities.BookEntity;
-import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

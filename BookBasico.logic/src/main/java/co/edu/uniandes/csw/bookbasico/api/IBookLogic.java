@@ -1,7 +1,6 @@
 package co.edu.uniandes.csw.bookbasico.api;
 
 import co.edu.uniandes.csw.bookbasico.entities.BookEntity;
-import co.edu.uniandes.csw.bookbasico.exceptions.BusinessLogicException;
 import java.util.List;
 
 public interface IBookLogic {
