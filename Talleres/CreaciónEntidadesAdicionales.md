@@ -45,12 +45,18 @@ Este tipo de relación crea en la tabla “BookEntity” una llave foránea haci
 
 
 En el siguiente enlace se muestra como debe quedar la clase.
-(enlace)
+
+[BookEntity.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/2.0.0/BookBasico.logic/src/main/java/co/edu/uniandes/csw/bookbasico/entities/BookEntity.java)
 
 ##### Persistencia 
 Para la persistencia se debe hacer exactamente lo que se hizo en el anterior paso, solo que con las nuevas entidades.
+
 ##### Excepción
-Se debe crear un nuevo paquete llamado “exceptions”, el cual tendrá una excepción personalizada la cual va a ser usada en métodos en los cuales existan más de una operación de persistencia, esta excepción básicamente funciona para hacer roll back en el caso de que algún error se presente.
+Se debe crear un nuevo paquete llamado “exceptions”, el cual tendrá una excepción personalizada que sera usada en métodos en los cuales existan más de una operación de persistencia, esta excepción básicamente funciona para hacer roll back en el caso de que algún error se presente.
+
+En el siguiente enlace se muestra como debe quedar la clase.
+
+[BusinessLogicException.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/2.0.0/BookBasico.logic/src/main/java/co/edu/uniandes/csw/bookbasico/exceptions/BusinessLogicException.java)
 
 ##### Interface 
 En el paquete “api” creamos las nuevas interfaces correspondientes a las nuevas entidades creadas.
@@ -66,23 +72,31 @@ public AuthorEntity getAuthor(Long bookId, Long authorId);
 Se puede ver que no se agregan métodos para su otras dos relaciones con Editorial y Review, esto se debe a que Editorial es un solo objeto, y ya viene dentro del objeto Book, en el caso de la lista de Review se considera que este se compone del objeto Book por lo tanto ya viene dentro de este.
 
 En el siguiente enlace se muestra como debe quedar la interface.
-(enlace)
+
+[IBookLogic.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/2.0.0/BookBasico.logic/src/main/java/co/edu/uniandes/csw/bookbasico/api/IBookLogic.java)
 
 ##### Lógica
 En el paquete “ejbs”, crearemos las nuevas clases correspondientes a las nuevas entidades agregadas y que deben implementar su respectivas interfaces para que así los nuevos métodos funciones e interactúen correctamente con la base de datos.
+
 En el siguiente enlace se muestra como debe quedar la clase “BookLogic”.
-(enlace)
+
+[BookLogic.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/2.0.0/BookBasico.logic/src/main/java/co/edu/uniandes/csw/bookbasico/ejbs/BookLogic.java)
 
 #### BookBasico Api
 ##### DTOs
 Se deben crean las nuevas clases en el paquete “dtos” con sus respectivos atributos y sus respectivas relaciones entre las entidades. 
 
 En el siguiente enlace se muestra como debe quedar la clase “BookDTO”.
-(enlace)
+
+[BookDTO.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/2.0.0/BookBasico.api/src/main/java/co/edu/uniandes/csw/bookbasico/dtos/BookDTO.java)
+
 ##### Converters
 En el paquete “converters” se deben agregar las nuevas clases como se hizo en el paso anterior, con la diferencia que ahora se deben agregar las relaciones a los respectivos métodos.
+
 En el siguiente enlace se muestra como debe quedar la clase “BookConverter”. 
-(enlace)
+
+[BookConverter.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/2.0.0/BookBasico.api/src/main/java/co/edu/uniandes/csw/bookbasico/converters/BookConverter.java)
+
 ##### Servicios
 En el paquete “services” se deben agregar las nuevas clases con sus respectivos métodos como se realizó en el paso anterior, con la diferencia que se deben agregar los nuevos métodos de acuerdo a las relaciones existentes en cada entidad. Por ejemplo:
 ```
@@ -98,5 +112,6 @@ En el paquete “services” se deben agregar las nuevas clases con sus respecti
     }
 ```
 En el siguiente enlace se muestra como debe quedar la clase “BookService”.
-(enlace)
+
+[BookService.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/2.0.0/BookBasico.api/src/main/java/co/edu/uniandes/csw/bookbasico/services/BookService.java)
 
