@@ -1,11 +1,10 @@
 ## Creación primera entidad
 -  [Crear Proyecto]( #crear-proyecto)
--  [Proyecto Lógica]( #bookbasico.logic)
--  [Proyecto Api]( #bookbasico.api)
+-  [Proyecto Lógica]( #bookbasico-logic)
+-  [Proyecto Api]( #bookbasico-api)
 
 ### Crear proyecto
-Con Netbeans se debe crear un proyecto Maven padre con el nombre de "BookBasico" (POM Project), una vez creado se deben agregar dos módulos
-"BookBasico.logic" y "BookBasico.api", el primero tiene la lógica y la interacción con la base de datos y el segundo tiene los Web services. El "BookBasico.logic" debe ser un proyecto Maven Java Application y el "BookBasico.api" debe ser un proyecto Maven Web Application.
+Con Netbeans se debe crear un proyecto Maven padre con el nombre de "BookBasico" (POM Project), una vez creado se deben agregar dos módulos "BookBasico.logic" y "BookBasico.api", el primero tiene la lógica y la interacción con la base de datos y el segundo tiene los Web services. El "BookBasico.logic" debe ser un proyecto Maven Java Application y el "BookBasico.api" debe ser un proyecto Maven Web Application.
 
 ##### Configuración POMS
 Para el POM padre se debe agregar un repositorio en donde se encuentran diferentes librerías que se usaran en los proyectos.
@@ -137,12 +136,13 @@ En el POM de BookBasico.api se deben agregar las dependencias que se muestran a 
     </build>
 </project>
 ```
-#### BookBasico.logic
+#### BookBasico Logic
 ##### Entidades
 Primero se debe crear un nuevo paquete llamado “entities”, aquí crearemos la clase “BookEntity” con sus respectivos atributos, esta clase debe estar anotada con @Entity la cual funciona para hacer el mapeo con la base de datos usando JPA, esta clase debe extender de “BaseEntity” la cual es una librería que tiene lo métodos y atributos básicos de una entidad, como el nombre y el id.
+
 En el siguiente enlace se muestra como debe quedar la clase.
 
-(enlace)
+[BookEntity.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/1.0.0/BookBasico.logic/src/main/java/co/edu/uniandes/csw/bookbasico/entities/BookEntity.java)
 
 Se debe tener en cuenta que para el manejo de fechas se debe usar la anotación @Temporal(TemporalType.DATE).
 
@@ -151,23 +151,23 @@ Se debe crear un paquete llamado “persistence”, aquí crearemos la clase “
 
 En el siguiente enlace se muestra como debe quedar la clase.
 
-(enlace)
+[BookPersistence.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/1.0.0/BookBasico.logic/src/main/java/co/edu/uniandes/csw/bookbasico/persistence/BookPersistence.java)
 
 ##### Interface 
 Se debe crear un paquete llamado “api”, aquí crearemos la interface “IBookLogic”, en la interface definiremos los métodos que usara los Web services.
 
 En el siguiente enlace se muestra como debe quedar la interface.
 
-(enlace)
+[IBookLogic.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/1.0.0/BookBasico.logic/src/main/java/co/edu/uniandes/csw/bookbasico/api/IBookLogic.java)
 
 ##### Lógica
 Se debe crear un paquete llamado “ejbs”, aquí crearemos la clase “BookLogic” la cual debe implementar la interface “IBookLogic”, esta clase tendrá los métodos básicos (Crear, Actualizar, Eliminar, Mostrar) los cuales están conectados a la clase de persistencia para su debida interacción con la base de datos.
 
 En el siguiente enlace se muestra como debe quedar la clase.
 
-(enlace)
+[BookLogic.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/1.0.0/BookBasico.logic/src/main/java/co/edu/uniandes/csw/bookbasico/ejbs/BookLogic.java)
 
-#### BookBasico.api
+#### BookBasico Api
 ##### Configuración
 Primero se debe crear una carpeta llamada “WEB-INF” dentro de la carpeta “Web Pages”, aquí crearemos un archivo XML llamado “glassfish-resources.xml” el cual tendrá la conexión con la base de datos. 
 Este archivo debe quedar de la siguiente manera:
@@ -212,21 +212,22 @@ Ahora se debe crear un nuevo paquete en “Source Packages” llamado “service
 
 En el siguiente enlace se muestra como debe quedar la clase.
 
-(enlace)
+[RestConfig.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/1.0.0/BookBasico.api/src/main/java/co/edu/uniandes/csw/bookbasico/services/RestConfig.java)
 
 ##### DTOs
 Ahora se creara un paquete llamado “dtos” (Data transfer object), aquí crearemos la clase “BookDTO”, esta clase deberá tener los mismo atributos que la clase “BookEntity” y como su nombre lo indica, se usa para la transferencia de datos entre servicios. Esto es importante ya que muchas veces se quiere personalizar el objeto antes de ser transferido y no como lo provee la base de datos.
 
 En el siguiente enlace se muestra como debe quedar la clase.
 
-(enlace)
+[BookDTO.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/1.0.0/BookBasico.api/src/main/java/co/edu/uniandes/csw/bookbasico/dtos/BookDTO.java)
 
 ##### Converters
 Ahora se debe crear un paquete llamado “converters” y aquí crearemos una clase llamada “BookConverter” la cual tiene como función convertir objetos de tipo BookEntity a BookDTO y viceversa. Esta clase es muy útil, ya que lo objetos que requiere los servicios son DTOs y lo objetos que requiere la persistencia son Entities, de igual manera al hacer consultas a la base de datos, esta devuelve objetos de tipo Entity, y los servicios exponen objetos de tipo DTO. 
 
 En el siguiente enlace se muestra como debe quedar la clase.
 
-(enlace)
+[BookConverter.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/1.0.0/BookBasico.api/src/main/java/co/edu/uniandes/csw/bookbasico/converters/BookConverter.java)
+
 ##### Servicios
 Ahora se debe crear una clase llamada “BookService” en el paquete anteriormente creado “services”, en esta clase se expondrán todos los servicios de “Book”. 
 La clase deberá tener las siguientes anotaciones:
@@ -247,8 +248,4 @@ public BookDTO getBook(@PathParam("id") Long id) {
 ```
 En el siguiente enlace se muestra como debe quedar la clase.
 
-(enlace)
-
-
-
-
+[BookService.java](https://github.com/recursosCSWuniandes/ejemplo-book-back/blob/1.0.0/BookBasico.api/src/main/java/co/edu/uniandes/csw/bookbasico/services/BookService.java)
