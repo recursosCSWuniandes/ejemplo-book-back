@@ -41,6 +41,7 @@ public class BookLogic implements IBookLogic {
     public BookEntity updateBook(BookEntity entity) {
         BookEntity newEntity = entity;
         BookEntity oldEntity = persistence.find(entity.getId());
+        newEntity.setAuthors(oldEntity.getAuthors());
         return persistence.update(newEntity);
     }
 
